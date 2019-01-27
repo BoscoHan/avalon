@@ -26,7 +26,6 @@ public class Users extends AuditModel {
 
 
 
-
     public void setId(long id) {
         this.id = id;
     }
