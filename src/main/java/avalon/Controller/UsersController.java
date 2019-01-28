@@ -1,7 +1,7 @@
 package avalon.Controller;
 
 
-import avalon.DAO.UsersDAO;
+import avalon.DAO.IUsersDAO;
 import avalon.Models.Users;
 import avalon.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +15,7 @@ import javax.validation.Valid;
 public class UsersController {
 
     @Autowired
-    private UsersDAO usersDAO;
+    private IUsersDAO usersDAO;
 
     @GetMapping("/users")
     public Page<Users> getUsers(Pageable pageable) {
@@ -34,6 +34,8 @@ public class UsersController {
                 .map(users -> {
                     users.setDisplayName(userRequest.getDisplayName());
                     users.setEmail(userRequest.getEmail());
+                    users.setFirstName(userRequest.getFirstName());
+                    users.setLastName(userRequest.getLastName());
                     return usersDAO.save(users);
                 }).orElseThrow(() -> new ResourceNotFoundException("User not found with id " + userID));
     }

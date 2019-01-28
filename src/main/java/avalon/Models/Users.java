@@ -24,11 +24,13 @@ public class Users extends AuditModel {
     @Column(columnDefinition = "text")
     private String email;
 
+    @NotBlank
+    @Size(max = 30)
+    private String firstName;
 
-
-    public void setId(long id) {
-        this.id = id;
-    }
+    @NotBlank
+    @Size(max = 30)
+    private String lastName;
 
     public long getId() {
         return id;
@@ -48,5 +50,21 @@ public class Users extends AuditModel {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 }
